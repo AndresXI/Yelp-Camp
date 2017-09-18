@@ -1,0 +1,20 @@
+var mongoose = require("mongoose");
+
+//SCHEMA SETUP
+//blueprint for campground
+var campgroundSchema = new mongoose.Schema({
+  name: String,
+  image: String,
+  description: String,
+  //associating a commnet with campground
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      //we are just embedding a reference with an ID
+      ref: "Comment"
+    }
+  ]
+});
+//creating a campground model
+//esports the model in app.js
+module.exports = mongoose.model("Campground", campgroundSchema);

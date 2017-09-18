@@ -1,0 +1,49 @@
+
+.image {
+  width: 100% !important;
+  height: 250px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  margin: 5px !important;
+}
+
+nav.navbar {
+  margin-bottom: 20px;
+}
+
+.style {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#camph1 {
+  text-align: center;
+  margin-bottom: 30px;
+
+}
+
+#delete {
+  display: inline;
+}
+
+.img-show {
+  width: 100% !important;
+  height: 520px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  margin: 5px !important;
+}
+
+div.bg-faded {
+  background: #efefef;
+  padding: 20px;
+  margin-top: 60px;
+}
+
+a.btn.btn-success {
+  margin-bottom: 25px;
+}
+
+div.caption-full {
+  padding: 9px; 
+}
