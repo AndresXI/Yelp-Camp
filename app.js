@@ -19,8 +19,8 @@ mongoose.connect('mongodb://localhost/yelp_camp', { useMongoClient: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static("public")); //used to get public/css
-//removes all campgrounds
-seedDB();
+//removes all campgrounds, seeding the database
+//seedDB();
 
 //PASSPORT CONFIGURATION
 app.use(require('express-session')({
