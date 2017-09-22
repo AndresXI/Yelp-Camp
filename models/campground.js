@@ -7,6 +7,13 @@ var campgroundSchema = new mongoose.Schema({
   image: String,
   description: String,
   //associating a commnet with campground
+  author: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
+    username: String
+  },
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -15,6 +22,8 @@ var campgroundSchema = new mongoose.Schema({
     }
   ]
 });
+
+
 //creating a campground model
 //esports the model in app.js
 module.exports = mongoose.model("Campground", campgroundSchema);
