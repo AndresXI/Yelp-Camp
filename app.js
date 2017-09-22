@@ -5,6 +5,7 @@ var express = require("express"),
    passport = require("passport"),
    LocalStrategy = require("passport-local"),
    Campground = require('./models/campground.js'),
+   methodOverride = require("method-override"),
    Comment = require("./models/comment.js"),
    User = require("./models/user"),
    seedDB = require("./seeds.js");
@@ -18,6 +19,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/yelp_camp', { useMongoClient: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+app.use(methodOverride("_method"));
 app.use(express.static("public")); //used to get public/css
 //removes all campgrounds, seeding the database
 //seedDB();
