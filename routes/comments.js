@@ -54,19 +54,20 @@ router.post("/", isLoggedIn, function(req, res){
 
 
 //Comment EDIT ROUTE
-router.get("/:comments_id/edit", function(req, res){
-  Comment.findById(req.params.comments_id, function(err, foundComment){
+router.get("/:comment_id/edit", checkCommentOwnership, function(req, res){
+  Comment.findById(req.params.comment_id, function(err, foundComment){
     if(err){
       res.redirect("back");
     } else {
       res.render("comments/edit", {campgroundID: req.params.id, comment: foundComment});
     }
+
   });
 });
 
 
 //COMMENT UPDATE ROUTE
-router.put("/:comment_id", function(req, res){
+router.put("/:comment_id", checkCommentOwnership, function(req, res){
   campgroundID = req.params.id;
   Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
     if(err) {
@@ -78,6 +79,17 @@ router.put("/:comment_id", function(req, res){
 });
 
 
+//COMMENT DESTROY ROUTE
+router.delete("/:comment_id", checkCommentOwnership, function(req, res){
+  //findByIdAndRemove
+  Comment.findByIdAndRemove(req.params.comment_id, function(err){
+    if(err){
+      res.redirect("back");
+    } else {
+      res.redirect("/campgrounds/" + req.params.id);
+    }
+  })
+});
 
 //middleware function
 function isLoggedIn(req, res, next){
@@ -85,6 +97,31 @@ function isLoggedIn(req, res, next){
     return next();
   }
   res.redirect("/login");
+}
+
+
+//middleware authorization
+function checkCommentOwnership(req, res, next){
+  if(req.isAuthenticated()){
+    Comment.findById(req.params.comment_id, function(err, foundComment){
+      if(err){
+        res.redirect("back")
+      } else {
+        //does the user own the comment?
+        console.log(req.params.comment_id);
+        console.log(foundComment);
+        if(foundComment.author.id.equals(req.user._id)) {
+          //continue with the rest of the parent function (route handler)
+            next();
+        } else {
+          res.redirect("back");
+        }
+      }
+    });
+
+  } else {
+    res.redirect("back");
+  }
 }
 
 module.exports = router;

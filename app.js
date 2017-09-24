@@ -35,9 +35,11 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use(passport.session());
+
 //middleware that runs for every single route
 app.use(function(req, res, next){
   //req.user contains the id and username of the current user
+  //comes from passpart js 
   res.locals.currentUser = req.user;
   next();
 });
