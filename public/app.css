@@ -45,5 +45,15 @@ a.btn.btn-success {
 }
 
 div.caption-full {
-  padding: 9px; 
+  padding: 9px;
+}
+
+form {
+  display: inline !important;
+
+}
+
+button.btn.btn-danger {
+  margin-bottom: 24px !important;
+  margin-left: 9px;
 }

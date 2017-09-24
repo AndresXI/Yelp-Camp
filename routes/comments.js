@@ -6,6 +6,9 @@ var Comment = require("../models/comment.js");
 //==============================
 //COMMENTS ROUTE
 //==============================
+//node automaticallly looks in the folder views to render html templates
+
+
 
 //comments new
 router.get("/new", isLoggedIn, function(req, res){
@@ -20,7 +23,7 @@ router.get("/new", isLoggedIn, function(req, res){
   });
 });
 
-//comments create
+//comments CREATE ROUTE
 router.post("/", isLoggedIn, function(req, res){
   //look up campgrounds using id
   var campID = req.params.id;
@@ -48,6 +51,33 @@ router.post("/", isLoggedIn, function(req, res){
     }
   });
 });
+
+
+//Comment EDIT ROUTE
+router.get("/:comments_id/edit", function(req, res){
+  Comment.findById(req.params.comments_id, function(err, foundComment){
+    if(err){
+      res.redirect("back");
+    } else {
+      res.render("comments/edit", {campgroundID: req.params.id, comment: foundComment});
+    }
+  });
+});
+
+
+//COMMENT UPDATE ROUTE
+router.put("/:comment_id", function(req, res){
+  campgroundID = req.params.id;
+  Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
+    if(err) {
+      res.redirect('back');
+    } else {
+      res.redirect("/campgrounds/" + campgroundID);
+    }
+  });
+});
+
+
 
 //middleware function
 function isLoggedIn(req, res, next){
