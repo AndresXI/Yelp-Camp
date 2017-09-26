@@ -2,6 +2,7 @@ var express = require("express"),
    app = express(),
    bodyParser = require("body-parser"),
    mongoose = require("mongoose"),
+   flash = require("connect-flash"),
    passport = require("passport"),
    LocalStrategy = require("passport-local"),
    Campground = require('./models/campground.js'),
@@ -21,6 +22,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 app.use(express.static("public")); //used to get public/css
+app.use(flash());
 //removes all campgrounds, seeding the database
 //seedDB();
 
@@ -39,8 +41,10 @@ app.use(passport.session());
 //middleware that runs for every single route
 app.use(function(req, res, next){
   //req.user contains the id and username of the current user
-  //comes from passpart js 
+  //comes from passpart js
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
   next();
 });
 
