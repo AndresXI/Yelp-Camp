@@ -16,6 +16,10 @@ nav.navbar {
   margin: 0 auto;
 }
 
+.login {
+  width: 50%;
+  margin: 0 auto;
+}
 #camph1 {
   text-align: center;
   margin-bottom: 30px;
@@ -56,4 +60,8 @@ form {
 button.btn.btn-danger {
   margin-bottom: 24px !important;
   margin-left: 9px;
+}
+
+.loginH1 {
+  text-align: center;
 }
