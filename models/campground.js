@@ -4,7 +4,10 @@ var mongoose = require("mongoose");
 //blueprint for campground
 var campgroundSchema = new mongoose.Schema({
   name: String,
-  price: String, 
+  price: String,
+  location: String,
+  lat: Number,
+  lng: Number, 
   image: String,
   description: String,
   //associating a commnet with campground
