@@ -7,7 +7,7 @@ var campgroundSchema = new mongoose.Schema({
   price: String,
   location: String,
   lat: Number,
-  lng: Number, 
+  lng: Number,
   image: String,
   description: String,
   //associating a commnet with campground
