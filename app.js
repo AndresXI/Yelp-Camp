@@ -52,6 +52,12 @@ app.use(indexRoutes);
 app.use('/campgrounds/:id/comments', commentRoutes);
 app.use('/campgrounds', campgroundRoutes);
 
+//used for heroku servers
+app.listen(process.env.PORT, process.env.IP, function () {
+    console.log("Server running!");
+});
+
+//used for out local server
 app.listen(3000, function() {
-  console.log("listen to port 3000");
+  console.log("listening to port 3000");
 });
