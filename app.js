@@ -15,12 +15,11 @@ var commentRoutes = require('./routes/comments.js'),
     campgroundRoutes = require('./routes/campgrounds.js'),
     indexRoutes = require('./routes/index.js');
 
- //connects to database
-mongoose.Promise = global.Promise;
-//mongoose.connect('mongodb://localhost/yelp_camp', { useMongoClient: true });
+ //connects to local database
+mongoose.connect(process.env.DATABASEURL, { useMongoClient: true });
 //mongo lab database
+//mongoose.connect('mongodb://andres:Barcelona10@ds061288.mlab.com:61288/yelp_camp', { useMongoClient: true });
 
-mongoose.connect('mongodb://andres:Barcelona10@ds061288.mlab.com:61288/yelp_camp', { useMongoClient: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
@@ -55,10 +54,10 @@ app.use(indexRoutes);
 app.use('/campgrounds/:id/comments', commentRoutes);
 app.use('/campgrounds', campgroundRoutes);
 
-//used for heroku servers
-app.listen(process.env.PORT, process.env.IP, function () {
-    console.log("Server running!");
-});
+// //used for heroku servers
+// app.listen(process.env.PORT, process.env.IP, function () {
+//     console.log("Server running!");
+// });
 
 //used for out local server
 app.listen(3000, function() {
