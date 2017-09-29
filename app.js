@@ -19,11 +19,8 @@ var commentRoutes = require('./routes/comments.js'),
 mongoose.Promise = global.Promise;
 //mongoose.connect('mongodb://localhost/yelp_camp', { useMongoClient: true });
 //mongo lab database
-const databaseUri = 'mongodb://andres:Barcelona10@ds061288.mlab.com:61288/yelp_camp';
-mongoose.connect(databaseUri, { useMongoClient: true })
-      .then(() => console.log(`Database connected`))
-      .catch(err => console.log(`Database connection error: ${err.message}`));
-//mongoose.connect('mongodb://andres:Barcelona10@ds061288.mlab.com:61288/yelp_camp', { useMongoClient: true });
+
+mongoose.connect('mongodb://andres:Barcelona10@ds061288.mlab.com:61288/yelp_camp', { useMongoClient: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
