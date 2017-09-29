@@ -17,7 +17,6 @@ var commentRoutes = require('./routes/comments.js'),
 
  //connects to local database
 mongoose.connect(process.env.DATABASEURL, { useMongoClient: true });
-mongoose.connect(process.env.databaseURL, { useMongoClient: true });
 //mongo lab database
 //mongoose.connect('mongodb://andres:Barcelona10@ds061288.mlab.com:61288/yelp_camp', { useMongoClient: true });
 
