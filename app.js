@@ -60,7 +60,7 @@ app.listen(process.env.PORT, process.env.IP, function () {
     console.log("Server running!");
 });
 
-// //used for out local server
-// app.listen(3000, function() {
-//   console.log("listening to port 3000");
-// });
+//used for out local server
+app.listen(3000, function() {
+  console.log("listen to port 3000");
+});
