@@ -15,7 +15,7 @@ var commentRoutes = require('./routes/comments.js'),
     campgroundRoutes = require('./routes/campgrounds.js'),
     indexRoutes = require('./routes/index.js');
 
- //connects to local database
+ //connects to local database and mongolab database online
 mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
 //mongo lab database
 //mongoose.connect('mongodb://andres:Barcelona10@ds061288.mlab.com:61288/yelp_camp', { useMongoClient: true });
