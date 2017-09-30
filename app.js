@@ -16,10 +16,10 @@ var commentRoutes = require('./routes/comments.js'),
     indexRoutes = require('./routes/index.js');
 
  //connects to local database
-mongoose.connect(process.env.DATABASEURL, { useMongoClient: true });
+mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
 //mongo lab database
 //mongoose.connect('mongodb://andres:Barcelona10@ds061288.mlab.com:61288/yelp_camp', { useMongoClient: true });
-
+console.log(process.env.MONGODB_URI);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
